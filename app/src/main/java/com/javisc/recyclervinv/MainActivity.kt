@@ -16,12 +16,12 @@ class MainActivity : AppCompatActivity() {
         val itemList = generateItems()
 
         recyclerViewItem.layoutManager = LinearLayoutManager(this)
-        val itemAdapter = ItemAdapter(object : ItemAdapter.OnClickListener {
-            override fun onClick(item: Item) {
+        val itemAdapter = ItemAdapter().apply {
+            onClick = { item ->
                 val text = "Day: ${item.day} Number of Tasks: ${item.subItemList.size}"
                 Toast.makeText(this@MainActivity, text, Toast.LENGTH_SHORT).show()
             }
-        })
+        }
         itemAdapter.submitList(itemList)
         recyclerViewItem.adapter = itemAdapter
     }
